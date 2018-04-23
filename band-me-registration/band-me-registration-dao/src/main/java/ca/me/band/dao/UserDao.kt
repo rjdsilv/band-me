@@ -13,12 +13,49 @@ import ca.me.band.model.User
  */
 interface UserDao : GenericDao<Long, User> {
 	/**
-	 * Validates if the user is allowed to login into the database.
+	 * Registers the user in the system if all the minimum requirements are met..
 	 *
 	 * @param user The user to be registered.
-	 * @Return The registered user.
+	 * @return The registered user.
 	 * @throws RegistrationException if any error occur during the registration.
 	 */
 	@Throws(RegistrationException::class)
 	fun register(user : User) : User
+
+	/**
+	 * Activates the user containing the given activation link provided it is not yet expired. If the link is
+	 * already expired, an exception is thrown to indicate that the user could not be activated, a new activation
+	 * link is generated and a new email is sent.
+	 *
+	 * @param activationLink The activation link for which the user must be activated.
+	 * @return The activated user.
+	 * @throws RegistrationException if the link is expired and the activation fails or the activation link is invalid.
+	 */
+	@Throws(RegistrationException::class)
+	fun activate(activationLink : String) : User
+
+	/**
+	 * Inactivates an existing user in the database.
+	 *
+	 * @param user The user to be inactivated.
+	 * @return The inactivated user.
+	 */
+	@Throws(RegistrationException::class)
+	fun inactivate(user : User) : User
+
+	/**
+	 * Searches the database for an user with the given e-mail. If no user is found, null is returned.
+	 *
+	 * @param email The email to be searched.
+	 * @return The user found or null if no user is found.
+	 */
+	fun findByEmail(email : String) : User?
+
+	/**
+	 * Searches the database for an user with the given activation link. If no user is found, null is returned.
+	 *
+	 * @param activationLink The activation link to be searched.
+	 * @return The user found or null if no user is found.
+	 */
+	fun findByActivationLink(activationLink : String) : User?
 }

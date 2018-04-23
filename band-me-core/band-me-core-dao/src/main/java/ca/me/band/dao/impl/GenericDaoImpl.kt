@@ -20,6 +20,8 @@ import java.time.LocalDateTime
  * @param M The model type to be used.
  * @see GenericModel
  * @see GenericDao
+ *
+ * TODO Add Logger class.
  */
 abstract class GenericDaoImpl<PK : Serializable, M : GenericModel<PK>> : GenericDao<PK, M> {
 	@Autowired

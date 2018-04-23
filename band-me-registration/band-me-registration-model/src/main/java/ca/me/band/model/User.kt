@@ -1,5 +1,6 @@
 package ca.me.band.model
 
+import org.springframework.security.crypto.password.PasswordEncoder
 import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -17,7 +18,7 @@ class User : GenericEntity<Long>() {
 	@Column(name = "EMAIL", nullable = false, length = 100, unique = true)
 	var email : String? = null
 
-	@Column(name = "PASSWORD", nullable = false, length = 256, columnDefinition = "CHAR(256)")
+	@Column(name = "PASSWORD", nullable = false, length = 60, columnDefinition = "CHAR(60)")
 	var password : String? = null
 
 	@Column(name = "FIRST_NAME", nullable = false, length = 50)
@@ -32,8 +33,26 @@ class User : GenericEntity<Long>() {
 	@Column(name = "BIRTH_DATE")
 	var birthDate : LocalDate? = null
 
-	@Column(name = "LAST_LOGIN_DATE")
-	var lastLoginDate : LocalDateTime? = null
+	@Column(name = "ACTIVATION_LINK", nullable = false, length = 60, unique = true, columnDefinition = "CHAR(60)")
+	var activationLink : String? = null
+
+	@Column(name = "LINK_EXPIRATION_DATE", nullable = false)
+	var linkExpirationDate : LocalDateTime? = null
 
 	override fun getKey() : Long = id
+
+	/**
+	 * Method created to encode the user password according to the defined rules.
+	 */
+	fun encodePassword(passwordEncoder: PasswordEncoder) {
+		password = passwordEncoder.encode(password)
+	}
+
+	/**
+	 * Method to generate an activation link based on the user properties.
+	 */
+	fun generateActivationLink(passwordEncoder: PasswordEncoder, daysToExpire : Long) {
+		activationLink = passwordEncoder.encode(email!! + password!! + LocalDateTime.now().nano)
+		linkExpirationDate = LocalDateTime.now().plusDays(daysToExpire)
+	}
 }
