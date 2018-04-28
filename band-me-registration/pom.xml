@@ -15,7 +15,8 @@
     <modules>
         <module>band-me-registration-model</module>
         <module>band-me-registration-dao</module>
-    </modules>
+		<module>band-me-registration-service</module>
+	</modules>
 
     <dependencies>
 		<dependency>

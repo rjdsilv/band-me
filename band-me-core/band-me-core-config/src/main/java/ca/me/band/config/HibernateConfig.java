@@ -41,8 +41,8 @@ public class HibernateConfig {
 
 		dataSource.setMinimumIdle(poolSize);
 		dataSource.setMaximumPoolSize(poolSize);
-		dataSource.setJdbcUrl(env.getProperty("pool.jdbcUrl"));
 		dataSource.setDriverClassName(env.getProperty("hibernate.connection.driver_class"));
+		dataSource.setJdbcUrl(env.getProperty("pool.jdbcUrl"));
 		dataSource.addDataSourceProperty("user", env.getProperty("pool.user"));
 		dataSource.addDataSourceProperty("password", env.getProperty("pool.password"));
 		dataSource.addDataSourceProperty("cachePrepStmts", true);
