@@ -28,6 +28,11 @@ import java.time.LocalDateTime
 @Service("registrationService")
 @PropertySource("classpath:registration.properties")
 open class RegistrationServiceImpl : RegistrationService {
+	// Constant declarations
+	companion object {
+		const val LINK_EXP_DAYS_PROP = "link.expiration.days"
+	}
+
 	@Autowired
 	private var env : Environment? = null
 
@@ -51,7 +56,7 @@ open class RegistrationServiceImpl : RegistrationService {
 
 			// Encodes the user password and creates the activation link.
 			user.encodePassword(passwordEncoder!!)
-			user.generateActivationLink(passwordEncoder!!, env!!.getProperty("link.expiration.days")!!.toLong())
+			user.generateActivationLink(passwordEncoder!!, env!!.getProperty(LINK_EXP_DAYS_PROP)!!.toLong())
 
 			// Inserts the user in the database, as it doesn't exist.
 			userDao!!.insert(user)
@@ -74,7 +79,7 @@ open class RegistrationServiceImpl : RegistrationService {
 		val user = userDao!!.findByActivationLink(activationLink) ?: throw RegistrationException("The given activation link is invalid and cannot be used!")
 
 		if (user.linkExpirationDate!!.isBefore(LocalDateTime.now())) {
-			user.generateActivationLink(passwordEncoder!!, env!!.getProperty("link.expiration.days")!!.toLong())
+			user.generateActivationLink(passwordEncoder!!, env!!.getProperty(LINK_EXP_DAYS_PROP)!!.toLong())
 			// TODO send a new activation link email
 			throw RegistrationException("Cannot activate user as the given activation link is already expired!")
 		}
