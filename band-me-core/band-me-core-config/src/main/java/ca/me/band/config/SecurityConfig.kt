@@ -1,4 +1,4 @@
-package ca.me.band.security.hash
+package ca.me.band.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,10 +1,10 @@
 package ca.me.band.service.impl
 
 import ca.me.band.config.HibernateConfig
+import ca.me.band.config.SecurityConfig
 import ca.me.band.dao.UserDao
 import ca.me.band.dao.impl.UserDaoImpl
 import ca.me.band.model.User
-import ca.me.band.security.hash.SecurityConfig
 import ca.me.band.service.RegistrationService
 import ca.me.band.service.exception.RegistrationException
 import org.junit.Assert
