@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>band-me-core-config</module>
-        <module>band-me-core-utils</module>
         <module>band-me-core-model</module>
         <module>band-me-core-dao</module>
     </modules>
