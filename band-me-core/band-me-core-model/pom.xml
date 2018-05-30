@@ -2,25 +2,35 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>band-me-core</artifactId>
-        <groupId>ca.rjdsilv.me.band</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>band-me-core</artifactId>
+		<groupId>ca.rjdsilv.me.band</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>band-me-core-model</artifactId>
+	<artifactId>band-me-core-model</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>ca.rjdsilv.me.band</groupId>
-            <artifactId>band-me-core-config</artifactId>
-            <version>${band.me.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate-validator.version}</version>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>ca.rjdsilv.me.band</groupId>
+			<artifactId>band-me-core-config</artifactId>
+			<version>${band.me.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate-validator.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.fasterxml</groupId>
+					<artifactId>classmate</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.logging</groupId>
+					<artifactId>jboss-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 </project>
