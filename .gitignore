@@ -24,6 +24,8 @@ hs_err_pid*
 # Directories
 .idea/
 target/
+logs/
 
 # Files
 *.iml
+dependency-reduced-pom.xml

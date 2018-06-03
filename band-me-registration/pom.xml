@@ -2,28 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>ca.rjdsilv.me.band</groupId>
-        <artifactId>band-me</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+	<parent>
+		<groupId>ca.rjdsilv.me.band</groupId>
+		<artifactId>band-me</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>band-me-registration</artifactId>
-    <packaging>pom</packaging>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>band-me-registration</artifactId>
+	<packaging>pom</packaging>
 
-    <modules>
-        <module>band-me-registration-model</module>
-        <module>band-me-registration-dao</module>
+	<modules>
+		<module>band-me-registration-model</module>
+		<module>band-me-registration-dao</module>
 		<module>band-me-registration-service</module>
 		<module>band-me-registration-rest</module>
 	</modules>
-
-    <dependencies>
-		<dependency>
-			<groupId>ca.rjdsilv.me.band</groupId>
-			<artifactId>band-me-core-utils</artifactId>
-			<version>${band.me.version}</version>
-		</dependency>
-	</dependencies>
 </project>

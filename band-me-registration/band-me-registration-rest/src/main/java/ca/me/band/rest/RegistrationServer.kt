@@ -1,14 +1,24 @@
 package ca.me.band.rest
 
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory
-import org.glassfish.jersey.server.ResourceConfig
-import javax.ws.rs.core.UriBuilder
-
-
+/**
+ * Reads the port parameter from the command line and starts the server. If no parameter is passed, the default
+ * value 9998 will be used.
+ * @author Rodrigo Januario da Silva
+ * @version 1.0.0
+ */
 fun main(args : Array<String>) {
-	val server = GrizzlyHttpServerFactory
-			.createHttpServer(
-					UriBuilder.fromUri("http://localhost/").port(9998).build(),
-					ResourceConfig().packages("ca.me.band.rest"))//ResourceConfig.forApplicationClass(RegistrationApplication::class.java))
+	val server = RestServer()
+	val portParam = "--port"
+	val portParamIdx = 0
+	val portValIdx = 1
+
+	// Only reads the parameter if the correct number of parameters are passed.
+	if (args.size == 2) {
+		if (args[portParamIdx].equals(portParam)) {
+			server.restPort = args[portValIdx].toInt()
+		}
+	}
+
+	// Starts the server.
 	server.start()
 }

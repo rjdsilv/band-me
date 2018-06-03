@@ -15,5 +15,6 @@
 		<module>band-me-core-config</module>
 		<module>band-me-core-model</module>
 		<module>band-me-core-dao</module>
+		<module>band-me-core-rest</module>
 	</modules>
 </project>

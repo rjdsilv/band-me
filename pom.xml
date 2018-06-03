@@ -108,6 +108,9 @@
 				<pool.user>BandMe</pool.user>
 				<pool.password>123456</pool.password>
 				<pool.jdbcUrl>jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=BandMe</pool.jdbcUrl>
+
+				<log.dir>C:\\Users\\rjdsi\\GitHub\\Projects\\band-me\\logs</log.dir>
+				<log.level>info</log.level>
 			</properties>
 		</profile>
 	</profiles>
