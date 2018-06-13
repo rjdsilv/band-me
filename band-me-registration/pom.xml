@@ -10,6 +10,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>band-me-registration</artifactId>
+	<name>band-me-registration [pom]</name>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -18,4 +19,12 @@
 		<module>band-me-registration-service</module>
 		<module>band-me-registration-rest</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>ca.rjdsilv.me.band</groupId>
+			<artifactId>band-me-core-utils</artifactId>
+			<version>${band.me.version}</version>
+		</dependency>
+	</dependencies>
 </project>

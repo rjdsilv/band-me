@@ -10,6 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>band-me-core-config</artifactId>
+	<name>band-me-core-config [jar]</name>
 
 	<dependencies>
 		<dependency>

@@ -4,6 +4,8 @@ import ca.me.band.dao.UserDao
 import ca.me.band.model.User
 import ca.me.band.service.RegistrationService
 import ca.me.band.service.exception.RegistrationException
+import ca.me.band.utils.LogUtils
+import org.apache.logging.log4j.LogManager
 import org.hibernate.PropertyValueException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.PropertySource
@@ -33,6 +35,9 @@ open class RegistrationServiceImpl : RegistrationService {
 		const val LINK_EXP_DAYS_PROP = "link.expiration.days"
 	}
 
+	private val logger = LogManager.getLogger(javaClass.simpleName)
+	private val logUtils = LogUtils
+
 	@Autowired
 	private var env : Environment? = null
 
@@ -51,19 +56,25 @@ open class RegistrationServiceImpl : RegistrationService {
 		try {
 			// User already exists on the database
 			if (null != userDao!!.findByEmail(user.email!!)) {
-				throw RegistrationException("The user ${user.email} is already registered on the system!")
+				val message = "The user ${user.email} is already registered on the system!"
+				logUtils.error(logger, message)
+				throw RegistrationException(message)
 			}
 
 			// Encodes the user password and creates the activation link.
+			logUtils.info(logger,"Encoding the password and generating activation link")
 			user.encodePassword(passwordEncoder!!)
 			user.generateActivationLink(passwordEncoder!!, env!!.getProperty(LINK_EXP_DAYS_PROP)!!.toLong())
 
 			// Inserts the user in the database, as it doesn't exist.
+			logUtils.info(logger, "Registering the user on the database")
 			userDao!!.insert(user)
 
 			// TODO Send activation email to the user.
 		} catch (ex : PropertyValueException) {
-			throw RegistrationException("The user is not valid for registration. Please, fix it before proceeding!", ex)
+			val message = "The user is not valid for registration. Please, fix it before proceeding!"
+			logUtils.error(logger, message, ex)
+			throw RegistrationException(message, ex)
 		}
 
 		return user

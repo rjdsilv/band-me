@@ -8,6 +8,7 @@
 	<artifactId>band-me</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>band-me [pom]</name>
 
 	<modules>
 		<module>band-me-registration</module>

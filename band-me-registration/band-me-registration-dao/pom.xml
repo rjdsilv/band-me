@@ -2,31 +2,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>band-me-registration</artifactId>
-        <groupId>ca.rjdsilv.me.band</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>band-me-registration</artifactId>
+		<groupId>ca.rjdsilv.me.band</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>band-me-registration-dao</artifactId>
+	<artifactId>band-me-registration-dao</artifactId>
+	<name>band-me-registration-dao [jar]</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>ca.rjdsilv.me.band</groupId>
-            <artifactId>band-me-core-dao</artifactId>
-            <version>${band.me.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ca.rjdsilv.me.band</groupId>
-            <artifactId>band-me-registration-model</artifactId>
-            <version>${band.me.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>${hsqldb.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>ca.rjdsilv.me.band</groupId>
+			<artifactId>band-me-core-dao</artifactId>
+			<version>${band.me.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ca.rjdsilv.me.band</groupId>
+			<artifactId>band-me-registration-model</artifactId>
+			<version>${band.me.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>

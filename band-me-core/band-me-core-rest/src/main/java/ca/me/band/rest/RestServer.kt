@@ -1,6 +1,7 @@
 package ca.me.band.rest
 
 import ca.me.band.rest.config.RestApplication
+import ca.me.band.utils.LogUtils
 import org.apache.logging.log4j.LogManager
 import org.glassfish.grizzly.http.CompressionConfig
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory
@@ -18,6 +19,8 @@ class RestServer {
 	private val restHost : String = InetAddress.getLocalHost().hostName
 	private val restPath = "rest"
 	private val logger = LogManager.getLogger(javaClass)
+	private val logUtils = LogUtils
+
 	var restPort = 9998
 
 	fun start() {
@@ -27,7 +30,7 @@ class RestServer {
 						ResourceConfig.forApplication(RestApplication()), false)
 
 		// Enables compression on the server.
-		if (logger.isInfoEnabled) logger.info("Enabling server compression.")
+		logUtils.info(logger, "Enabling server compression.")
 		val compression = server.getListener("grizzly").compressionConfig
 		compression.compressionMode = CompressionConfig.CompressionMode.ON
 		compression.compressionMinSize = 1
@@ -40,9 +43,9 @@ class RestServer {
 
 		// Starts the server.
 		try {
-			if (logger.isInfoEnabled) logger.info("Server created at $restHost:$restPort/$restPath")
+			logUtils.info(logger, "Server created at $restHost:$restPort/$restPath")
 			server.start()
-			if (logger.isInfoEnabled) logger.info("Server Successfully started")
+			logUtils.info(logger, "Server Successfully started")
 			System.out.println("Press ENTER to stop the server")
 			System.`in`.read()
 		} finally {

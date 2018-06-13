@@ -1,5 +1,6 @@
 package ca.me.band.rest.filters
 
+import ca.me.band.utils.LogUtils
 import org.apache.logging.log4j.LogManager
 import org.glassfish.grizzly.http.server.Request
 import java.util.*
@@ -20,7 +21,8 @@ import javax.ws.rs.ext.Provider
 class DateRequestFilterValidation : ContainerRequestFilter {
 	// TODO Read value from configuration file.
 	private val logger = LogManager.getLogger(javaClass.simpleName)
-	private val reqValInMin = 1L
+	private val reqValInMin = 10L
+	private val logUtils = LogUtils
 
 	@Inject
 	private var requestProvider : javax.inject.Provider<Request>? = null
@@ -32,7 +34,7 @@ class DateRequestFilterValidation : ContainerRequestFilter {
 		val date = request!!.date
 
 		if ((date == null) || (Date().time - date.time > reqValInMin * 60L * 1000L)) {
-			logger.error("########## :: ${requestProvider!!.get().remoteAddr} - Invalid Request: REQUEST TO OLD")
+			logUtils.error(logger, "${requestProvider!!.get().remoteAddr} - Invalid Request: REQUEST TO OLD: $date")
 			throw WebApplicationException(Response.status(Response.Status.BAD_REQUEST).build())
 		}
 	}

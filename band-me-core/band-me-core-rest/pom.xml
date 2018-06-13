@@ -10,6 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>band-me-core-rest</artifactId>
+	<name>band-me-core-rest [jar]</name>
 
 	<dependencies>
 		<dependency>
@@ -86,6 +87,22 @@
 					<artifactId>javax.inject</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-moxy</artifactId>
+			<version>${jersey.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.validation</groupId>
+					<artifactId>validation-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>ca.rjdsilv.me.band</groupId>
+			<artifactId>band-me-core-utils</artifactId>
+			<version>${band.me.version}</version>
 		</dependency>
 	</dependencies>
 </project>

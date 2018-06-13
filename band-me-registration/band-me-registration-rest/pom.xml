@@ -11,6 +11,8 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>band-me-registration-rest</artifactId>
+	<name>band-me-registration-rest [uber jar]</name>
+
 	<dependencies>
 		<dependency>
 			<groupId>ca.rjdsilv.me.band</groupId>
