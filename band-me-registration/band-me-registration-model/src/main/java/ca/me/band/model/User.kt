@@ -8,11 +8,11 @@ import javax.validation.constraints.Email
 
 @Entity
 @Table(name = "TBBM_USER")
-class User : GenericEntity<Long>() {
+class User : GenericEntity<Int>() {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "USER_ID", nullable = false, scale = 15, precision = 0, unique = true)
-	var id : Long = -1
+	@Column(name = "USER_ID", nullable = false, unique = true)
+	var id : Int = -1
 
 	@Email
 	@Column(name = "EMAIL", nullable = false, length = 100, unique = true)
@@ -39,7 +39,7 @@ class User : GenericEntity<Long>() {
 	@Column(name = "LINK_EXPIRATION_DATE", nullable = false)
 	var linkExpirationDate : LocalDateTime? = null
 
-	override fun getKey() : Long = id
+	override fun getKey() : Int = id
 
 	/**
 	 * Method created to encode the user password according to the defined rules.

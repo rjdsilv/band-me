@@ -10,7 +10,7 @@ import ca.me.band.model.User
  * @version 1.0.0
  * @see GenericDao
  */
-interface UserDao : GenericDao<Long, User> {
+interface UserDao : GenericDao<Int, User> {
 	/**
 	 * Searches the database for an user with the given e-mail. If no user is found, null is returned.
 	 *

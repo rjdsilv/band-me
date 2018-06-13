@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional
  */
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 @Repository("userDao")
-open class UserDaoImpl : GenericDaoImpl<Long, User>(), UserDao {
+open class UserDaoImpl : GenericDaoImpl<Int, User>(), UserDao {
 	override var modelClass : Class<User> = User::class.java
 
 	/**

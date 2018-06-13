@@ -22,7 +22,7 @@
 		<hsqldb.version>2.4.0</hsqldb.version>
 		<spring.version>5.0.6.RELEASE</spring.version>
 		<hikaricp.version>2.7.8</hikaricp.version>
-		<mssql.version>6.4.0.jre8</mssql.version>
+		<mysql.version>5.1.46</mysql.version>
 		<junit.version>4.12</junit.version>
 		<band.me.version>1.0-SNAPSHOT</band.me.version>
 		<kotlin.version>1.2.41</kotlin.version>
@@ -30,6 +30,7 @@
 		<log4j.version>2.11.0</log4j.version>
 		<jersey.version>2.27</jersey.version>
 		<servlet.version>4.0.1</servlet.version>
+		<jaxb.version>2.3.0</jaxb.version>
 	</properties>
 
 	<dependencies>
@@ -47,6 +48,11 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -107,8 +113,12 @@
 			<properties>
 				<pool.max.size>13</pool.max.size>
 				<pool.user>BandMe</pool.user>
-				<pool.password>123456</pool.password>
-				<pool.jdbcUrl>jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=BandMe</pool.jdbcUrl>
+				<pool.password>BandMe@1234</pool.password>
+				<pool.jdbcUrl>jdbc:mysql://localhost/BandMe</pool.jdbcUrl>
+
+				<hibernate.connection.driver_class>com.mysql.jdbc.Driver</hibernate.connection.driver_class>
+				<hibernate.dialect>org.hibernate.dialect.MySQLDialect</hibernate.dialect>
+				<hibernate.hbm2ddl.auto>validate</hibernate.hbm2ddl.auto>
 
 				<log.dir>C:\\Users\\rjdsi\\GitHub\\Projects\\band-me\\logs</log.dir>
 				<log.level>info</log.level>
